@@ -6,6 +6,7 @@ return {
       terminal_cmd = "~/.claude/local/claude", -- Point to local installation
     },
     config = true,
+    lazy = false,
     keys = {
       -- Your keymaps here
     },
