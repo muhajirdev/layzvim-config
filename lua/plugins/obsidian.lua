@@ -28,7 +28,13 @@ return {
     ui = {
       checkboxes = {
         [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-        ["x"] = { char = "", hl_group = "ObsidianDone" },
+        ["x"] = { char = "󰱒", hl_group = "ObsidianDone" },
+      },
+    },
+    checkbox = {
+      order = {
+        " ",
+        "x",
       },
     },
 
@@ -79,20 +85,22 @@ return {
 
     callbacks = {
       enter_note = function(_, note)
-        vim.keymap.set("n", "<leader>ch", "<cmd>Obsidian toggle_checkbox<cr>", {
-          buffer = note.bufnr,
-          desc = "Toggle checkbox",
-        })
-        vim.keymap.set("n", "<cr>", function()
-          require("obsidian.api").smart_action()
-        end, {
-          buffer = note.bufnr,
-          desc = "Smart action",
-        })
-        vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", {
-          buffer = note.bufnr,
-          desc = "Follow link under cursor",
-        })
+        if note and note.bufnr then
+          vim.keymap.set("n", "<leader>ch", "<cmd>Obsidian toggle_checkbox<cr>", {
+            buffer = note.bufnr,
+            desc = "Toggle checkbox",
+          })
+          vim.keymap.set("n", "<cr>", function()
+            require("obsidian.api").smart_action()
+          end, {
+            buffer = note.bufnr,
+            desc = "Smart action",
+          })
+          vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<cr>", {
+            buffer = note.bufnr,
+            desc = "Follow link under cursor",
+          })
+        end
       end,
     },
   },

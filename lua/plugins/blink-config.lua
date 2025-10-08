@@ -34,6 +34,14 @@ return {
           auto_show_delay_ms = 200,
         },
       },
+      sources = {
+        default = function()
+          if vim.bo.filetype == "markdown" then
+            return { "lsp", "path" }  -- Only LSP and path, no buffer words
+          end
+          return { "lsp", "path", "snippets", "buffer" }
+        end,
+      },
     },
   },
 }
